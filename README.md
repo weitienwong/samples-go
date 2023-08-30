@@ -5,9 +5,9 @@
 This repository contains several sample Workflow applications that demonstrate the various capabilities of the Temporal
 Server via the Temporal Go SDK.
 
-- Temporal Server repo: [https://github.com/temporalio/temporal](https://github.com/temporalio/temporal)
-- Temporal Go SDK repo: [https://github.com/temporalio/sdk-go](https://github.com/temporalio/sdk-go)
-- Go SDK docs: [https://docs.temporal.io/application-development](https://docs.temporal.io/application-development?lang=go#supported-sdks)
+- Temporal Server repo: [temporalio/temporal](https://github.com/temporalio/temporal)
+- Temporal Go SDK repo: [temporalio/sdk-go](https://github.com/temporalio/sdk-go)
+- Go SDK docs: [docs.temporal.io/dev-guide/go](https://docs.temporal.io/dev-guide/go)
 
 ## How to use
 
@@ -46,8 +46,7 @@ Each sample demonstrates one feature of the SDK, together with tests.
   execute a Child Workflow from a Parent Workflow Execution. A Child Workflow Execution only returns to the Parent
   Workflow Execution after completing its last Run.
 
-- [**Child Workflow with
-  ContinueAsNew**](./child-workflow-continue-as-new): Demonstrates
+- [**Child Workflow with ContinueAsNew**](./child-workflow-continue-as-new): Demonstrates
   that the call to Continue-As-New, by a Child Workflow Execution, is *not visible to the a parent*. The Parent Workflow
   Execution receives a notification only when a Child Workflow Execution completes, fails or times out. This is a useful
   feature when there is a need to **process a large set of data**. The child can iterate over the data set calling
@@ -68,6 +67,10 @@ Each sample demonstrates one feature of the SDK, together with tests.
   Execution that occurs according to a cron schedule. This samples showcases the `HasLastCompletionResult`
   and `GetLastCompletionResult` APIs which are used to pass information between executions. Additional
   documentation: [What is a Temporal Cron Job?](https://docs.temporal.io/docs/content/what-is-a-temporal-cron-job).
+
+- [**Schedule Workflow**](./schedule): Demonstrates a recurring Workflow
+  Execution that occurs according to a schedule.
+  documentation: [Schedule](https://docs.temporal.io/workflows#schedule).
 
 - [**Encryption**](./encryption): How to use encryption for
   Workflow/Activity data with the DataConverter API. Also includes an example of stacking encoders (in this case
@@ -131,6 +134,9 @@ Each sample demonstrates one feature of the SDK, together with tests.
 - [**Interceptors**](./interceptor): Demonstrates how to use
   interceptors to intercept calls, in this case for adding context to the logger.
 
+- [**Update**](./update): Demonstrates how to create a workflow that reacts
+  to workflow update requests.
+
 ### Dynamic Workflow logic examples
 
 These samples demonstrate some common control flow patterns using Temporal's Go SDK API.
@@ -138,7 +144,7 @@ These samples demonstrate some common control flow patterns using Temporal's Go 
 - [**Dynamic Execution**](./dynamic): Demonstrates how to execute
   Workflows and Activities using a name rather than a strongly typed function.
 
-- [**Branching Acitivties**](./branch): Executes multiple Activities
+- [**Branching Activities**](./branch): Executes multiple Activities
   in parallel. The number of branches is controlled by a parameter that is passed in at the start of the Workflow
   Execution.
 
@@ -163,7 +169,7 @@ These samples demonstrate some common control flow patterns using Temporal's Go 
 - [**Split/Merge Future**](./splitmerge-future): Demonstrates how to
   use futures to await for completion of multiple activities invoked in parallel. This samples to processes chunks of a
   large work item in parallel, and then merges the intermediate results to generate the final result.
--
+
 - [**Split/Merge Selector**](./splitmerge-selector): Demonstrates how
   to use Selector to process activity results as soon as they become available. This samples to processes chunks of a
   large work item in parallel, and then merges the intermediate results to generate the final result.
@@ -178,6 +184,9 @@ These samples demonstrate some common control flow patterns using Temporal's Go 
 
 - [**Await for signal processing**](./await-signals): Demonstrates how
   to process out of order signals processing using `Await` and `AwaitWithTimeout`.
+
+- [**Sticky task queue for activities**](./activities-sticky-queues): Demonstrates how
+  to create a sticky task queue to run certain activities on the same host.
 
 ### Scenario based examples
 
@@ -199,6 +208,9 @@ These samples demonstrate some common control flow patterns using Temporal's Go 
   use of parallel executions, `ContinueAsNew` for long histories, a Query API, and the use of a custom `DataConverter`
   for serialization.
 
+- [**Polling Services**](./polling): Recommended implementation of an activity that needs to periodically poll an external 
+resource waiting its successful completion
+
 - [**Prometheus Metrics**](./metrics): Demonstrates how to instrument
   Temporal with Prometheus and Uber's Tally library.
 
@@ -207,6 +219,9 @@ These samples demonstrate some common control flow patterns using Temporal's Go 
 
 - [**Request/Response with Response Queries**](./reqrespquery):
   Demonstrates how to accept requests via signals and use queries to poll for responses.
+
+- [**Request/Response with Response Updates**](./reqrespupdate):
+  Demonstrates how to accept requests and responsond via updates.
 
 ### Pending examples
 
